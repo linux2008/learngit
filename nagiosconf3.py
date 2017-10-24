@@ -28,9 +28,14 @@ def getData():
     url=urllib2.urlopen('http://192.168.235.130/getjson/')
     data=json.loads(url.read())
     return data
+def countDict(k,d):
+   if k in d:
+      d[k]+=1
+   else:
+      d[k]=1
 
 def paserData(data):
-
+    dic={}
     con=''
     gcon=''
     for i in data:
@@ -38,8 +43,10 @@ def paserData(data):
 #        members=[]
         for a in i['member']:
             hostname=a['hostname']
-#            members.append(hostname)            
-            con+=temp %a
+#            members.append(hostname)     
+            countDict(hostname,dic)
+            if dic[hostname]<2:       
+                con+=temp %a
 
 #        gcon+=group %{'groupname':groupname,'member':''.join(members)}
         gcon+=group %{'groupname':groupname,'member':hostname}
