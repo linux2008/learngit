@@ -18,7 +18,7 @@ temp=""" define host {
                 address       %(ip)s
 }
 """
-group=""" define service{ 
+group=""" define hostgroup{ 
           hostgroup_name  %(groupname)s
           alias           %(groupname)s 
           members         %(member)s
